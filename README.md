@@ -1,2 +1,0 @@
-# Hackertown
-Hackertown Java Game

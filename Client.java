@@ -75,7 +75,7 @@ public class Client {
 			myClientNum = serverIn.read();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("IO Exception in getClientNum()");
 		}
 	}
 	
@@ -94,8 +94,7 @@ public class Client {
 	public static void readServerOutput() throws IOException{
 		
 		//receive the client numbers 1 and 2 from the server and store them into numberGroup
-		System.out.println("Wating for server message");
-		System.out.println();
+		System.out.println("Wating for server message\n");
 		System.out.println(serverIn.readUTF());
 	}
 	
@@ -108,21 +107,26 @@ public class Client {
 		String answer;
 		String serverMessage;
 		String tempHostName;
+		String hackedMessage = "YOU HAVE BEEN HACKED!!!", 
+			   erasedMalware = "YOUR MALWARE HAS BEEN ERASED!!", 
+			   suspectedHacker = "YOU WERE SUSPECTED OF HACKING!!!",
+			   machineNotRecovered = "YOUR MACHINE WAS NOT RECOVERED";
+ 
 		serverMessage = serverIn.readUTF();
 		
-			if(serverMessage.equals("YOU HAVE BEEN HACKED!!!")){
+			if(serverMessage.equals(hackedMessage)){
 				System.out.println();
 				System.out.println(serverMessage);
-				if(serverIn.readUTF().equals("YOUR MALWARE HAS BEEN ERASED!!")){
-					System.out.println("YOUR MALWARE HAS BEEN ERASED!!");
-				}else if(serverMessage.equals("YOU WERE SUSPECTED OF HACKING!!!")){
-					System.out.println("TOO BAD YOUR TECHNICIAN BUDDY GOT RID OF YOU!!!");
+				if(serverIn.readUTF().equals(erasedMalware)){
+					System.out.println(erasedMalware);
+				}else if(serverMessage.equals(suspectedHacker)){
+					System.out.println(suspectedHacker);
 					alive = false;
-				}else if(serverMessage.equals("YOUR MACHINE WAS NOT RECOVERED")){
-					System.out.println("YOUR MACHINE WAS NOT RECOVERED!");
+				}/*else if(serverMessage.equals(machineNotRecovered)){
+					System.out.println(machineNotRecovered);
 					alive = false;
-				}else{
-					System.out.println("YOUR MACHINE WAS NOT RECOVERED!");
+				}*/else{
+					System.out.println(machineNotRecovered);
 					alive = false;
 				}
 				
